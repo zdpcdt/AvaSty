@@ -1,17 +1,21 @@
 ﻿using System.ComponentModel;
+using AvaSty.Models;
 
 namespace AvaSty.ViewModels;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
-    string buttonText = "Click Me!";
+    private Content _content = new ("test");
+    public Content Content => _content;
+
+    string _buttonText = "Click Me!";
 
     public string ButtonText
     {
-        get => buttonText;
+        get => _buttonText;
         set
         {
-            buttonText = value;
+            _buttonText = value;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ButtonText)));
         }
     }

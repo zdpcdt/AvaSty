@@ -9,5 +9,13 @@
         <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}"/>
         <TextBox Name="input" IsEnabled="False"/>
         <TextBlock IsVisible="{Binding !#input.IsEnabled}">Sorry, no can do!</TextBlock>
+        <ContentControl DataContext="{Binding Content}">
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}"/>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
     </StackPanel>
+        
 </Window>
