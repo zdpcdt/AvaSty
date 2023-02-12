@@ -5,8 +5,12 @@ namespace AvaSty.ViewModels;
 
 public class MainWindowViewModel : ObservableObject
 {
-    private Content _content = new ("test");
+    private Content _content = new("test");
     public Content Content => _content;
+
+    private List<string> _items = new();
+    public List<string> Items => _items;
+
     string _buttonText = "Click Me!";
 
     public string ButtonText
@@ -15,5 +19,6 @@ public class MainWindowViewModel : ObservableObject
         set => SetProperty(ref _buttonText, value);
     }
 
-    public void ButtonClicked() => ButtonText = "Hello, Avalonia!";
+    public void ButtonClicked(string x) => ButtonText = x;
+
 }
