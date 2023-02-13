@@ -5,44 +5,38 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaSty.Pages.BindingSample"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             xmlns:converter="clr-namespace:AvaSty"
-             xmlns:converters="clr-namespace:AvaSty.Converters">
+             xmlns:converters="clr-namespace:AvaSty.Converters"
+             xmlns:pages="clr-namespace:AvaSty.ViewModels">
     <UserControl.Resources>
         <converters:ColorConverter x:Key="Converter1" />
         <converters:IntegerConverter x:Key="Converter2" />
         <converters:StringConverter x:Key="Converter3" Prefix="前缀" />
     </UserControl.Resources>
-    <!-- <Design.DataContext> -->
-    <!--     <vm:MainWindowViewModel/> -->
-    <!-- </Design.DataContext> -->
-
-    <UserControl.Styles>
-        <Style Selector="TextBlock.h1">
-            <Setter Property="FontSize" Value="24" />
-            <Setter Property="FontWeight" Value="Bold" />
-        </Style>
-    </UserControl.Styles>
+    <Design.DataContext>
+        <pages:BindingSampleViewModel/>
+    </Design.DataContext>
 
     <StackPanel Margin="10">
-        <!-- <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}"> -->
-        <!--     <Button.CommandParameter> -->
-        <!--         <system:String>Hello, Avalonia!</system:String> -->
-        <!--     </Button.CommandParameter> -->
-        <!-- </Button> -->
         <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}" CommandParameter="Hello, Avalonia!" />
+        <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}"/>
+        <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}">
+            <Button.CommandParameter>
+                <system:String>Hello, Avalonia!</system:String>
+            </Button.CommandParameter>
+        </Button>
 
-        <!-- <TextBox Name="TestBox" IsEnabled="False" /> -->
-        <!-- <TextBlock IsVisible="{Binding !IsEnabled,ElementName=TestBox}" Text="{Binding Content.Header}" /> -->
-        <!-- <TextBlock IsVisible="{Binding !#TestBox.IsEnabled}" Text="{Binding ButtonText}" /> -->
-        <!-- <TextBlock IsVisible="{Binding !#TestBox.IsEnabled}" Text="Sorry, no can do!" /> -->
-        <!-- -->
-        <!-- <StackPanel DataContext="{Binding Content }" Tag="1"> -->
-        <!--     <TextBox Text="{Binding Header}" /> -->
-        <!--     <TextBox Text="{Binding $parent.Tag}" /> -->
-        <!-- </StackPanel> -->
+        <TextBox Name="TestBox" IsEnabled="False" />
+        <TextBlock IsVisible="{Binding !IsEnabled,ElementName=TestBox}" Text="{Binding Content.Header}" />
+        <TextBlock IsVisible="{Binding !#TestBox.IsEnabled}" Text="{Binding ButtonText}" />
+        <TextBlock IsVisible="{Binding !#TestBox.IsEnabled}" Text="Sorry, no can do!" />
+
+        <StackPanel DataContext="{Binding Content }" Tag="1">
+            <TextBox Text="{Binding Header}" />
+            <TextBox Text="{Binding $parent.Tag}" />
+        </StackPanel>
 
         <Border Tag="Hello1">
-            <TextBlock Classes="h1" Text="{Binding $parent.Tag}" />
+            <TextBlock Text="{Binding $parent.Tag}" />
         </Border>
         <Border Tag="Hello2">
             <Border>
@@ -55,18 +49,18 @@
             </Decorator>
         </Border>
 
-        <!-- <Panel> -->
-        <!--     <ListBox Items="{Binding Items}" IsVisible="{Binding !!Items.Count}" /> -->
-        <!--     <TextBlock IsVisible="{Binding !Items.Count}">No results found</TextBlock> -->
-        <!-- </Panel> -->
+        <Panel>
+            <ListBox Items="{Binding Items}" IsVisible="{Binding !!Items.Count}" />
+            <TextBlock IsVisible="{Binding !Items.Count}">No results found</TextBlock>
+        </Panel>
 
-        <!-- <Slider HorizontalAlignment="Left" -->
-        <!--         Name="TestSlider" -->
-        <!--         Width="300" -->
-        <!--         Maximum="100" -->
-        <!--         Minimum="0" /> -->
-        <!-- <TextBlock Foreground="{Binding #TestSlider.Value,Converter={StaticResource Converter1}}" -->
-        <!--            Text="{Binding #TestSlider.Value}" /> -->
+        <Slider HorizontalAlignment="Left"
+                Name="TestSlider"
+                Width="300"
+                Maximum="100"
+                Minimum="0" />
+        <TextBlock Foreground="{Binding #TestSlider.Value,Converter={StaticResource Converter1}}"
+                   Text="{Binding #TestSlider.Value}" />
 
         <StackPanel Margin="20" HorizontalAlignment="Left">
             <CheckBox Name="CheckBox1" Content="{Binding Content.Header,Converter={StaticResource Converter3}}" />

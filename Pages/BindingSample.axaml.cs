@@ -1,6 +1,5 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
+using AvaSty.ViewModels;
 
 namespace AvaSty.Pages;
 
@@ -9,10 +8,6 @@ public partial class BindingSample : UserControl
     public BindingSample()
     {
         InitializeComponent();
-    }
-
-    private void InitializeComponent()
-    {
-        AvaloniaXamlLoader.Load(this);
+        DataContext = new BindingSampleViewModel();
     }
 }

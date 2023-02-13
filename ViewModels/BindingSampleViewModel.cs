@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AvaSty.ViewModels;
 
-public class MainWindowViewModel : ObservableObject
+public class BindingSampleViewModel : ObservableObject
 {
     private Content _content = new("test");
     public Content Content => _content;
@@ -19,6 +19,6 @@ public class MainWindowViewModel : ObservableObject
         set => SetProperty(ref _buttonText, value);
     }
 
-    public void ButtonClicked(string x) => ButtonText = x;
+    public void ButtonClicked() => ButtonText = "Hello,Avalonia!";
 
 }
