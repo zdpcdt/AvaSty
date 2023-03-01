@@ -10,6 +10,9 @@
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
     </UserControl.Styles>
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="Warning">Yellow</SolidColorBrush>
+    </UserControl.Resources>
 
     <StackPanel>
         <ListBox Items="{Binding Items}">
@@ -42,10 +45,10 @@
             <Border>
                 <Button Content="btn" />
             </Border>
+            <Border>
+                <TextBlock>I will have red background when hovered.</TextBlock>
+            </Border>
         </StackPanel>
-        <Border>
-            <TextBlock>I will have red background when hovered.</TextBlock>
-        </Border>
 
         <StackPanel>
             <StackPanel.Styles>
@@ -55,5 +58,32 @@
             </StackPanel.Styles>
             <Button>I will have red text when pressed.</Button>
         </StackPanel>
+        <StackPanel>
+            <StackPanel.Resources>
+                <SolidColorBrush x:Key="Warning">Orange</SolidColorBrush>
+            </StackPanel.Resources>
+
+            <Button Background="{DynamicResource Warning}">
+            </Button>
+        </StackPanel>
+
+        <DockPanel LastChildFill="True">
+            <Border Height="25" Background="SkyBlue" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Top">
+                <TextBlock Foreground="Black">Dock = "Top"</TextBlock>
+            </Border>
+            <Border Height="25" Background="SkyBlue" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Top">
+                <TextBlock Foreground="Black">Dock = "Top"</TextBlock>
+            </Border>
+            <Border Height="25" Background="LemonChiffon" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Bottom">
+                <TextBlock Foreground="Black">Dock = "Bottom"</TextBlock>
+            </Border>
+            <Border Width="200" Background="PaleGreen" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Left">
+                <TextBlock Foreground="Black">Dock = "Left"</TextBlock>
+            </Border>
+            <Border Background="White" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Foreground="Black">这部分内容“填充”剩余的空间</TextBlock>
+            </Border>
+        </DockPanel>
     </StackPanel>
+
 </UserControl>
