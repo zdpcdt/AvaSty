@@ -1,36 +1,42 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaSty.Pages.BindingSample"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             xmlns:converters="clr-namespace:AvaSty.Converters"
-             xmlns:pages="clr-namespace:AvaSty.ViewModels">
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="AvaSty.Pages.BindingSample"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:converters="clr-namespace:AvaSty.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:AvaSty.ViewModels"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <UserControl.Resources>
         <converters:ColorConverter x:Key="Converter1" />
         <converters:IntegerConverter x:Key="Converter2" />
-        <converters:StringConverter x:Key="Converter3" Prefix="前缀" />
+        <converters:StringConverter Prefix="前缀" x:Key="Converter3" />
     </UserControl.Resources>
     <Design.DataContext>
-        <pages:BindingSampleViewModel/>
+        <pages:BindingSampleViewModel />
     </Design.DataContext>
 
     <StackPanel Margin="10">
-        <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}" CommandParameter="Hello, Avalonia!" />
-        <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}"/>
-        <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}">
+        <Button
+            Command="{Binding ButtonClicked}"
+            CommandParameter="Hello, Avalonia!"
+            Content="{Binding ButtonText}" />
+        <Button Command="{Binding ButtonClicked}" Content="{Binding ButtonText}" />
+        <Button Command="{Binding ButtonClicked}" Content="{Binding ButtonText}">
             <Button.CommandParameter>
                 <system:String>Hello, Avalonia!</system:String>
             </Button.CommandParameter>
         </Button>
 
-        <TextBox Name="TestBox" IsEnabled="False" />
-        <TextBlock IsVisible="{Binding !IsEnabled,ElementName=TestBox}" Text="{Binding Content.Header}" />
+        <TextBox IsEnabled="False" Name="TestBox" />
+        <TextBlock IsVisible="{Binding !IsEnabled, ElementName=TestBox}" Text="{Binding Content.Header}" />
         <TextBlock IsVisible="{Binding !#TestBox.IsEnabled}" Text="{Binding ButtonText}" />
         <TextBlock IsVisible="{Binding !#TestBox.IsEnabled}" Text="Sorry, no can do!" />
 
-        <StackPanel DataContext="{Binding Content }" Tag="1">
+        <StackPanel DataContext="{Binding Content}" Tag="1">
             <TextBox Text="{Binding Header}" />
             <TextBox Text="{Binding $parent.Tag}" />
         </StackPanel>
@@ -50,24 +56,24 @@
         </Border>
 
         <Panel>
-            <ListBox Items="{Binding Items}" IsVisible="{Binding !!Items.Count}" />
+            <ListBox IsVisible="{Binding !!Items.Count}" Items="{Binding Items}" />
             <TextBlock IsVisible="{Binding !Items.Count}">No results found</TextBlock>
         </Panel>
 
-        <Slider HorizontalAlignment="Left"
-                Name="TestSlider"
-                Width="300"
-                Maximum="100"
-                Minimum="0" />
-        <TextBlock Foreground="{Binding #TestSlider.Value,Converter={StaticResource Converter1}}"
-                   Text="{Binding #TestSlider.Value}" />
+        <Slider
+            HorizontalAlignment="Left"
+            Maximum="100"
+            Minimum="0"
+            Name="TestSlider"
+            Width="300" />
+        <TextBlock Foreground="{Binding #TestSlider.Value, Converter={StaticResource Converter1}}" Text="{Binding #TestSlider.Value}" />
 
-        <StackPanel Margin="20" HorizontalAlignment="Left">
-            <CheckBox Name="CheckBox1" Content="{Binding Content.Header,Converter={StaticResource Converter3}}" />
-            <Button Content="Hello"
-                    IsEnabled="{Binding IsChecked,ElementName=CheckBox1,Converter={StaticResource Converter2}}" />
-            <Button Content="Hello" IsEnabled="{Binding #CheckBox1.IsChecked,Converter={x:Static BoolConverters.Not}}" />
+        <StackPanel HorizontalAlignment="Left" Margin="20">
+            <CheckBox Content="{Binding Content.Header, Converter={StaticResource Converter3}}" Name="CheckBox1" />
+            <Button Content="Hello" IsEnabled="{Binding IsChecked, ElementName=CheckBox1, Converter={StaticResource Converter2}}" />
+            <Button Content="Hello" IsEnabled="{Binding #CheckBox1.IsChecked, Converter={x:Static BoolConverters.Not}}" />
             <Button Content="Hello" IsEnabled="{Binding !#CheckBox1.IsChecked}" />
         </StackPanel>
+        <TimePicker ClockIdentifier="12HourClock" />
     </StackPanel>
 </UserControl>

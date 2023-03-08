@@ -16,11 +16,17 @@
         HorizontalAlignment="Stretch"
         TabStripPlacement="Left"
         Theme="{DynamicResource NavigationTab}">
-        <TabItem Header="Data Binding">
+        <TabItem Header="Binding">
             <pages:BindingSample />
         </TabItem>
         <TabItem Header="Styling">
             <pages:StyleDemo />
+        </TabItem>
+        <TabItem Header="Layout">
+            <pages:LayoutSample />
+        </TabItem>
+        <TabItem Header="Template">
+            <pages:TemplateSample />
         </TabItem>
     </TabControl>
 </UserControl>
